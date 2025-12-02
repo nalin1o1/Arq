@@ -1,0 +1,84 @@
+#include <iostream>
+#include <vector>
+#include <string>
+
+#define pb push_back 
+#pragma once
+using namespace std;
+
+
+
+ struct AstNode
+{
+	
+	string token;
+	string value;
+	string type;
+	AstNode *before;
+	AstNode *left;
+	AstNode *right;
+}AstNodes;
+
+
+ struct BlockNode
+{
+	int id;
+	vector<AstNode*>pointers;
+	BlockNode* before;
+	BlockNode* after;
+	vector<BlockNode*>subBlocks;
+	
+}BlockNodes;
+
+struct MasterNode
+{
+
+vector <BlockNode*>subSegments;	
+
+}masterNode;
+
+MasterNode* CreateMasterNode()
+{
+
+	MasterNode* mastNode = new MasterNode;
+	return(mastNode);
+}
+
+
+AstNode* CreateNode(string token, string value, string type, AstNode *current)
+{
+	AstNode* newnode = new AstNode;
+	newnode->token = token;
+	newnode->value = value;
+	newnode->type = type;
+	newnode->before = current;
+	newnode->left = NULL;
+	newnode->right = NULL;
+	return(newnode);
+	
+}
+
+BlockNode* CreateBlockNode(int id, BlockNode* before, BlockNode* after)
+{
+	BlockNode* newnode = new BlockNode;
+	newnode->before = before;
+	newnode->after = after;
+	newnode->id = id;
+	return(newnode);
+}
+
+
+class AbstractSyntaxTreeConstruction
+{
+	public: 
+	BlockNode* block(int id,BlockNode* current,vector<string> tokenized, int* streampointer);
+	
+	AstNode* statement(vector<string> tokenized, int* streampointer, AstNode* current);
+	
+	AstNode* expression(vector<string> tokenized, int* streampointer,AstNode* current);
+	
+};
+
+
+
+
