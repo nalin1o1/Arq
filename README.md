@@ -1,2 +1,3 @@
-# Arq
-# Arq
+Arq is a compiler for a programming language targeting wafer-scale architectures (WSAs) such as Cerebras-style systems. WSAs integrate an entire silicon wafer into a single compute fabric composed of many lightweight cores arranged in a dense 2D mesh. Ultra-high-bandwidth, low-latency on-wafer links provide fast inter-core communication and enable fine-grained parallelism that is fundamentally different from traditional designs that rely on off-chip interconnects.
+
+Arq exposes explicit control over partitioning and placement, letting developers map programs to specific regions of the wafer and exploit local memory and on-wafer communication patterns. Because wafer-scale ISAs are rarely public, Arq targets a custom ISA designed to express on-wafer primitives and scheduling semantics required for efficient execution on WSA fabrics.
